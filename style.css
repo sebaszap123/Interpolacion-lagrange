@@ -1,3 +1,93 @@
-body {
-align-items: center;
+body{
+    background-image: url(img/theme.jpg); /*ESTABLECEMOS FONDO DE BODY*/
+    background-repeat: no-repeat; /*LA IMAGEN NO SE REPITE*/
+    background-attachment: fixed; /*LA IMÁGEN ES ESTÁTICA*/
+}
+#main-container{
+    width: 500px; /*ANCHO DE CONTENEDOR DE TABLA*/
+}
+table{
+    background-color: white; /*COLOR DE FONDO DE TABLA*/
+    text-align: center; /*CENTRAMOS TEXTO DE TABLA*/
+    border-collapse: collapse; /**/
+    width: 90%; /*ANCHO DE TABLA*/
+    margin-bottom: 100px; /*MARGEN INFERIOR PARA QUE EL FOOTER NO TAPE NUESTRA TABLA*/
+}
+th, td{
+    padding: 21px; /*RELLENO DE CAMPOS DE TABLA*/
+}
+thead{
+    background-color: #331aa1; /*COLOR DE CABECERA DE LA TABLA*/
+    border-bottom: solid 5px #0F362D; /**/
+    color: white; /*COLOR DE CAMPOS 1 DE TABLA*/
+}
+tr:nth-child(even){
+    background-color: #ddd; /* COLOR DE CAMPOS 2 DE TABLA*/
+}
+#Txt{
+    background-color: #829fac; /*COLOR DE FONDO*/
+    font-family: Arial, Helvetica, sans-serif; /*TIPO DE LETRA EN EL DIV*/
+    font-size: 18px; /*TAMAÑO DE LETRA EN EL DIV*/
+}
+h1{
+    color:chocolate;
+    text-align: center; /*TÍTULO H1 ALINEADO EN EL CENTRO*/
+    font-family: Arial, Helvetica, sans-serif; /*TIPO DE LETRA DEL TÍTULO*/
+    font-size: 50px; /*TAMAÑO DE LETRA DEL TÍTULO*/
+}
+.btn-default{
+    position: relative; /**/
+    display: block; /**/
+    height: 77px; /*ALTO DEL BOTÓN*/
+    width: 300px; /*ANCHO DEL BOTÓN*/
+    border-radius: 4px; /**/
+    text-transform: uppercase; /*CONVERTIMOS LAS LETRAS A MAYÚSCULAS*/
+    background-color: transparent; /**/
+    color: #fff; /**/
+    font-size: 18px; /*TAMAÑO DE LETRA DEL BOTÓN*/
+    overflow: hidden; /**/
+    transition: all 500ms ease; /*TIEMPO DE ANIMACIÓN*/
+    border: 2px solid #20e2d7; /*TAMAÑO Y COLOR DE BORDES DEL BOTÓN*/
+    margin-bottom: 40px; /*MARGEN INFERIOR DEL BOTÓN*/
+    z-index: 0; /**/
+    font-weight: 700; /**/
+    cursor: pointer; /*CAMBIAMOS CURSOS AL PONERLO ENCIMA DEL BOTÓN*/
+}
+.btn-default::before{
+    content: ""; /**/
+    position: absolute; /**/
+    left: 0; /*DONDE INICIA EL COLOR DE LA ANIMACIÓN*/
+    right: 0; /*DONDE INICIA EL COLOR DE LA ANIMACIÓN*/
+    top: 0; /*DONDE INICIA EL COLOR DE LA ANIMACIÓN*/
+    margin: auto; /**/
+    background-color: #0e9fff; /*COLOR DE LA ANIMACIÓN DEL BOTÓN*/
+    transition: all 500ms ease; /*TIEMPO DE ANIMACIÓN*/
+    z-index: -1; /**/
+}
+.btn-default::before {
+    width: 0; /**/
+    height: 100%; /**/
+}
+.btn-default:hover {
+    color: #ff08ad; /**/
+}
+.btn-default:hover::before {
+    width: 100%; /**/
+}
+@keyframes shadow-pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(32, 226, 215, 0.6);
+    }
+    100% {
+      box-shadow: 0 0 8px 16px rgba(32, 226, 215, 0);
+    }
+}
+.footer{
+    background-color: #59deff; /*COLOR DE FONDO DEL FOOTER*/
+    bottom: 0; /*SIN ESPACIO HACIA ABAJO*/
+    left: 0; /*SIN ESPACIO A LA IZQUIERDA*/
+    position: fixed; /**/
+    width: 100%; /*ANCHO DEL FOOTER*/
+    height: 65px; /*ALTO DEL FOOTER*/
+    text-align: center; /*ALINIEACIÓN DEL TEXTO EN EL FOOTER*/
 }

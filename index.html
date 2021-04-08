@@ -8,8 +8,26 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="respuestas" class="">
-    <p>Hola mundo</p>
-  </div>
+  <script src="main.js"></script>
+  <div id="titulo" class="title">
+ <h1>Interpolación</h1>
+<div class="btn-group">
+  <button type="button" class="btn btn-default" onclick="lineal.mostrar()">Interpolación lineal</button>
+  <button type="button" class="btn btn-default" onclick="open.Interpolacion2()">Interpolación lagrage 1er orden</button>
+  <button type="button" class="btn btn-default" onclick="open.Interpolacion3()">Interpolación lagrange 2do orden</button>
+  <button type="button" class="btn btn-default" onclick="open.Interpolacion4()" >Interpolación lagrange Cuadrática</button>
+</div>
+
+<button class="btn-calcular" id="obtener">Calcular</button>
+<input type="number" class="result" id="resultado" placeholder="resultado" disabled>
+        <center>
+            <div id="main-container">
+                <table id="calcular"></table> <!-- ETIQUETA DONDE SE IMPRIMIRA NUESTRA TABLA -->
+            </div>
+        </center>
+        <div class="footer">
+            <p>© Copyright Sebaszap123
+        </div>
+
 </body>
 </html>
