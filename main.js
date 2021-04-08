@@ -12,27 +12,19 @@ var lineal = new (function () {
     data += "<br>";
     data += "Calculadora interpolación lineal";
     data += "<br>";
-    data += "<br>";
     data += "</div>";
-    data += "<thead><tr><th>Datos</th><th>Valores</th><th>Calcular</th>";
+    data += "<thead><tr><th>Datos</th><th>Valores</th><th>Mensaje</th>";
     for (i = 0; i < this.datos.length; i++) {
       //INICIAMOS NUESTRO CICLO PARA IMPRIMIR NUESTRA TABLA CON LOS DATOS NECESARIOS
       data += "<tr>";
       if (this.datos[i].Resultado == "") {
-        //DETERMINAMOS SI EL ASIENTO ESTÁ RESERVADO
-        data +=
-          "<td>" +
-          this.datos[i] +
-          `</td><td>X <input type='Number' id='${this.datos[i]}lineal'/><th>Calcular</th>` +
-          "<td>*</td>";
-        data +=
-          '<td><button onclick="lineal.calcular()">Reservar</button></td>'; //BOTÓN CON FUNCIÓN INTEGRADA PARA RESERVAR, MANDANDO COMO VALOR EL NÚMERO DE ASIENTO O POSICIÓN DEL ARREGLO
+        //DETERMINAMOS SI EL RESULTADO ESTA VACIO
+      alert('Algo salio mal')
       } else {
-        //EL ASIENTO ESTÁ RESERVADO E IMPRIMIMOS EL NOMBRE DE RESERVACIÓN
         data +=
           "<td>" +
           this.datos[i] +
-          `</td><td><input type='Number' id='${this.metadata[i]}'/></td><th><button onclick="lineal.calcular()">Calcular</button></th>`;
+          `</td><td><input type='Number' id='${this.metadata[i]}'/></td><th>Inserta el valor en la caja</th>`;
       }
       data += "</tr>";
     }
@@ -40,7 +32,6 @@ var lineal = new (function () {
     document.getElementById("calcular").style.display = "block";
   };
 })();
-
 var orden1 = new (function () {})();
 var orden2 = new (function () {})();
 var cuadratica = new (function () {})();
