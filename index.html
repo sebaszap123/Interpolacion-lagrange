@@ -6,19 +6,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calculadora de interpolaciones</title>
   <link rel="stylesheet" href="style.css">
-
+  <script src="main.js"></script>
 </head>
 <body>
-  <script src="main.js"></script>
   <div id="titulo" class="title">
  <h1>Interpolación</h1>
 <div class="btn-group">
-  <button id="btnLineal" type="button" class="btn btn-default" onclick="lineal.mostrar()">Interpolación lineal</button>
-  <button id="btn1orden" type="button" class="btn btn-default" onclick="orden1.mostrar1()">Interpolación lagrage 1er orden</button>
-  <button id="btn2orden" type="button" class="btn btn-default" onclick="orden2.mostar2()">Interpolación lagrange 2do orden</button>
-  <button id="btn4" type="button" class="btn btn-default" onclick="cuadratica.mostar4()" >Interpolación lagrange Cuadrática</button>
+  let a = 0;
+  <button type="button" class="btn btn-default" onclick="generar.lineal()">Interpolación lineal</button>
+  <button type="button" class="btn btn-default" onclick="generar.orden1()">Interpolación lagrage 1er orden</button>
+  <button type="button" class="btn btn-default" onclick="generar.orden2()">Interpolación lagrange 2do orden</button>
+  <button type="button" class="btn btn-default" onclick="generar.cuadratica()" >Interpolación lagrange Cuadrática</button>
 </div>
 <button class="result" id="obtener">Calcular</button>
+<button class="result" id="cuadratica"> cuadratica</button>
 <input type="number" class="result" id="resultado" placeholder="resultado" disabled><br><br>
         <center>
             <div id="main-container">
@@ -28,5 +29,6 @@
         <div class="footer">
             <p>© Copyright Sebaszap123
         </div>
+
 </body>
 </html>
