@@ -11,8 +11,7 @@ var lineal = new (function () {
     ];
     var data = "<div id='dataLineal'>"; // Modificar, tomar en cuenta
     data += "<br>";
-    data += "Calculadora interpolación lineal";
-    data += "<br>";
+    data += "<h3>Calculadora interpolación lineal<h3>";
     data += "</div>";
     data += "<thead><tr><th>Datos</th><th>Valores</th><th>Mensaje</th>";
     for (i = 0; i < this.datos.length; i++) {
@@ -47,15 +46,15 @@ var orden1 = new (function () {
     ];
     var data = "<div id='dataOrden1'>"; // Modificar, tomar en cuenta
     data += "<br>";
-    data += "Calculadora interpolación lineal";
+    data += "<h3>Calculadora interpolación de 1er orden<h3>";
     data += "<br>";
     data += "</div>";
     data += "<thead><tr><th>Datos</th><th>Valores</th><th>Mensaje</th>";
     for (i = 0; i < this.datos.length; i++) {
-      //INICIAMOS NUESTRO CICLO PARA IMPRIMIR NUESTRA TABLA CON LOS DATOS NECESARIOS
+      //INICIAR  CICLO PARA IMPRIMIR LA TABLA
       data += "<tr>";
       if (this.datos[i].Resultado == "") {
-        //DETERMINAMOS SI EL RESULTADO ESTA VACIO
+        //DETERMINAR SI EL RESULTADO ESTA VACIO
         alert("Algo salio mal");
       } else {
         data +=
@@ -77,12 +76,13 @@ var cuadratica = new (function () {})();
 //Obtener valores del html con dom + funciones de cada interpolación (mismo boton para todas)
 window.onload = function () {
   document.getElementById("obtener").onclick = function () {
-    if (document.getElementById("dataLineal").value != "") {
-      var x = document.getElementById("x").value;
-      var x0 = document.getElementById("x0").value;
-      var x1 = document.getElementById("x1").value;
-      var fx0 = document.getElementById("fx0").value;
-      var fx1 = document.getElementById("fx1").value;
+    if (document.getElementById("dataLineal")) {
+      // definir como numeros
+      var x = Number(document.getElementById("x").value);
+      var x0 = Number(document.getElementById("x0").value);
+      var x1 = Number(document.getElementById("x1").value);
+      var fx0 = Number(document.getElementById("fx0").value);
+      var fx1 = Number(document.getElementById("fx1").value);
       this.array = [x, x0, x1, fx0, fx1];
       // recorrer array en busca de espacios vacio
       let i = 0;
@@ -91,24 +91,54 @@ window.onload = function () {
           i++;
         }
       });
-      alert(`te falta ingresar ${i} valores`);
-      document.getElementById("resultado").value = interpolacion._lineal(
-        x,
-        x0,
-        x1,
-        fx0,
-        fx1
-      );
+      if (i <= 0) {
+        document.getElementById("resultado").value = calculo._lineal(
+          x,
+          x0,
+          x1,
+          fx0,
+          fx1
+        );
+      } else {
+        alert(`te falta ingresar ${i} valores`);
+      }
+    } else if (document.getElementById("dataOrden1")) {
+      var x = Number(document.getElementById("x").value);
+      var x0 = Number(document.getElementById("x0").value);
+      var x1 = Number(document.getElementById("x1").value);
+      var fx0 = Number(document.getElementById("fx0").value);
+      var fx1 = Number(document.getElementById("fx1").value);
+      this.array = [x, x0, x1, fx0, fx1];
+      // recorrer array en busca de espacios vacio
+      let i = 0;
+      this.array.forEach((element) => {
+        if (element == "") {
+          i++;
+        }
+      });
+      if(i <= 0){
+        document.getElementById("resultado").value = calculo._orden1(
+          x,
+          x0,
+          x1,
+          fx0,
+          fx1
+        );
+      } else {
+        alert(`te falta ingresar ${i} valores`);
+      }
     }
   };
 };
 
 // Elaborar la función para calcular metodos de interpolación
-var interpolacion = new (function () {
+var calculo = new (function () {
   this._lineal = function (x, x0, x1, fx0, fx1) {
-    var resultado = x * x0 + x1 / fx0 + (fx1 - fx0);
-    console.log(resultado);
-    console.log(x);
+    let resultado = x + x0 + x1 + fx0 + fx1;
+    return resultado;
+  };
+  this._orden1 = function (x, x0, x1, fx0, fx1) {
+    let resultado = x * x0 * x1 * fx0 * fx1;
     return resultado;
   };
 })();
