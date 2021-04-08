@@ -145,17 +145,17 @@ var generar = new (function () {
         data +=
           "<td>" +
           this.datos[i] +
-          `</td><td><input id='${this.metadata[i]}'></td><th><button class="generate" id="cuadraticab0">Generar b0</button></th>`;
+          `</td><td><input id='${this.metadata[i]}' disabled></td><th><button class="generate" id="cuadraticab0">Generar b0</button></th>`;
       } else if (i === 8) {
         data +=
           "<td>" +
           this.datos[i] +
-          `</td><td><input id='${this.metadata[i]}'></td><th><button class="generate" id="cuadraticab1">Generar b1</button></th>`;
+          `</td><td><input id='${this.metadata[i]}' disabled></td><th><button class="generate" id="cuadraticab1">Generar b1</button></th>`;
       } else if (i === 9) {
         data +=
           "<td>" +
           this.datos[i] +
-          `</td><td><input id='${this.metadata[i]}'></td><th><button class="generate" id="cuadraticab2">Generar b2</button></th>`;
+          `</td><td><input id='${this.metadata[i]}' disabled></td><th><button class="generate" id="cuadraticab2">Generar b2</button></th>`;
       }
       data += "</tr>";
     }
@@ -319,19 +319,30 @@ var verificar = new (function () {
 })();
 
 // Datos que necesito ("x", "x0", "x1", "x2", "fx0","fx1","fx2","b0", "b1", "b2")
-  var app = new (function () {
-    this.generarb0 = function () {
-      if (document.getElementById("fx0")) {
-        var a = document.getElementById("fx0").value;
-        document.getElementById("b0").innerHTML = a;
-        console.log(a)
-      }
-    };
-  })();
+var app = new (function () {
+  this.generarb0 = function () {
+    if (document.getElementById("fx0")) {
+      var a = document.getElementById("fx0").value;
+      document.getElementById("b0").innerHTML = a;
+      console.log(a);
+    }
+  };
+})();
 
 window.onclick = function () {
   document.getElementById("cuadraticab0").onclick = function () {
-    console.log("hola");
+    var a = document.getElementById("fx0").value;
+    this.array = [a];
+    this.array.forEach((element) => {
+      if (element == "") {
+        alert("No agregaste fx0");
+      } else {
+        var a = document.getElementById("fx0").value;
+        document.getElementById("b0").value = a;
+      }
+    });
   };
 };
-// document.getElementById("b0").innerHTML = "hola"
+
+//     var a = document.getElementById("fx0").value;
+//     document.getElementById("b0").value = a;
