@@ -161,6 +161,16 @@ var generar = new (function () {
     }
     document.getElementById("contenedor").innerHTML = data;
     document.getElementById("contenedor").style.display = "block";
+    // Generar funcion para botones creados
+    document.getElementById("cuadraticab0").onclick = function () {
+      app.generarb0();
+    };
+    document.getElementById("cuadraticab1").onclick = function () {
+      app.generarb1();
+    };
+    document.getElementById("cuadraticab2").onclick = function () {
+      app.generarb2();
+    };
   };
 })();
 
@@ -216,7 +226,7 @@ window.onload = function () {
           fx1
         );
       } else {
-        alert(`te falta ingresar ${i + 1} valores`);
+        alert(`te falta ingresar ${i} valores`);
       }
       // Para interpolación 2do orden
     } else if (document.getElementById("dataOrden2")) {
@@ -321,28 +331,56 @@ var verificar = new (function () {
 // Datos que necesito ("x", "x0", "x1", "x2", "fx0","fx1","fx2","b0", "b1", "b2")
 var app = new (function () {
   this.generarb0 = function () {
-    if (document.getElementById("fx0")) {
-      var a = document.getElementById("fx0").value;
-      document.getElementById("b0").innerHTML = a;
-      console.log(a);
-    }
-  };
-})();
-
-window.onclick = function () {
-  document.getElementById("cuadraticab0").onclick = function () {
     var a = document.getElementById("fx0").value;
     this.array = [a];
     this.array.forEach((element) => {
-      if (element == "") {
-        alert("No agregaste fx0");
-      } else {
-        var a = document.getElementById("fx0").value;
+      if (element != "") {
         document.getElementById("b0").value = a;
+      } else {
+        alert("dale valor a fx0");
       }
     });
   };
-};
+  // Generarb1
+  this.generarb1 = function () {
+    let count = -1;
+    var fx1 = document.getElementById("fx1").value;
+    var fx0 = document.getElementById("fx0").value;
+    var x0 = document.getElementById("x0").value;
+    var x1 = document.getElementById("x1").value;
+    this.data = ["x0", "x1", "fx0", "fx1"];
+    this.arrayb1 = [x0, x1, fx0, fx1];
+    this.arrayb1.forEach((element) => {
+      count++;
+      if (element != "") {
+        document.getElementById("b1").value = (fx1 - fx0) / (x1 - x0);
+      } else {
+        alert(`falta ${this.data[count]}`);
+      }
+    });
+  };
+  this.generarb2 = function () {
+    let count = -1;
+    var fx2 = document.getElementById("fx2").value;
+    var fx1 = document.getElementById("fx1").value;
+    var fx0 = document.getElementById("fx0").value;
+    var x2 = document.getElementById("x2").value;
+    var x1 = document.getElementById("x1").value;
+    var x0 = document.getElementById("x0").value;
+    this.data = ["fx2", "fx1", "fx0", "x2", "x1", "x0"];
+    this.arrayb2 = [fx2, fx1, fx0, x2, x1, x0];
+    this.part1 = ((fx2 - fx1) / x2 - x1) - ((fx1-fx0) / (x1-x0));
+    this.part2 = x2-x0;
+    this.arrayb2.forEach((valores) => {
+      count++
+      if(valores != ""){
+        document.getElementById ('b2').value = this.part1 / this.part2;
+      } else {
+        alert(`falta ${this.data[count]}`)
+      }
+    })
+  };
+})();
 
 //     var a = document.getElementById("fx0").value;
 //     document.getElementById("b0").value = a;
