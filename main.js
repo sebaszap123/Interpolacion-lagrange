@@ -258,9 +258,9 @@ window.onload = function () {
       // Calculo para interpolación Cuadratica
     } else if (document.getElementById("dataCuadratica")) {
       // Verificamos si hay inputs vacios
-      let i = verificar.cuadratica();
+      let i = verificar._cuadratica();
       // if de acuerdo a la funcion verificar para evitar hacer el calculo con datos faltantes
-      if (i < 0) {
+      if (i < 1) {
         // definir como numeros
         var x = Number(document.getElementById("x").value);
         var x0 = Number(document.getElementById("x0").value);
@@ -304,8 +304,9 @@ var calculo = new (function () {
     var resultado = this.first * fx0 + this.second * fx1 + this.third * fx2;
     return resultado.toFixed(4);
   };
-  this._cuadratica = function () {
-
+  this._cuadratica = function (x, x0, x1, b0, b1, b2) {
+    this.resultado = b0 + b1 * (x - x0) + b2 * (x - x0) * (x - x1);
+    return this.resultado.toFixed(4)
   };
 })();
 
@@ -343,7 +344,7 @@ var verificar = new (function () {
     return this.o2;
   };
   this._cuadratica = function () {
-        this.cuadratica = 0;
+    this.cuadratica = 0;
     var x = document.getElementById("x").value;
     var x0 = document.getElementById("x0").value;
     var x1 = document.getElementById("x1").value;
@@ -358,7 +359,6 @@ var verificar = new (function () {
     });
     return this.cuadratica;
   };
-  ;
 })();
 
 // Datos que necesito ("x", "x0", "x1", "x2", "fx0","fx1","fx2","b0", "b1", "b2")
