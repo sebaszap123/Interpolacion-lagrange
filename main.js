@@ -265,9 +265,12 @@ window.onload = function () {
         var x = Number(document.getElementById("x").value);
         var x0 = Number(document.getElementById("x0").value);
         var x1 = Number(document.getElementById("x1").value);
+        this.b0 = app.generarb0();
+        this.b1 = app.generarb1();
+        this.b2 = app.generarb2();
         var b0 = Number(document.getElementById("b0").value);
         var b1 = Number(document.getElementById("b1").value);
-        var b2 = Number(document.getElementById("b1").value);
+        var b2 = Number(document.getElementById("b2").value);
         // Realizar operación
         document.getElementById("resultado").value = calculo._cuadratica(
           x,
@@ -289,27 +292,34 @@ var calculo = new (function () {
   this._lineal = function (x, x0, x1, fx0, fx1) {
     this.division = (fx1 - fx0) / (x1 - x0);
     let resultado = fx0 + this.division * (x - x0);
-    return resultado.toFixed(4);
+    return resultado.toFixed(6);
   };
   this._orden1 = function (x, x0, x1, fx0, fx1) {
-    this.division1 = x - x1 / x0 - x1;
-    this.division2 = x - x0 / x1 - x0;
+    this.division1 = (x - x1) / (x0 - x1);
+    this.division2 = (x - x0) / (x1 - x0);
     let resultado = this.division1 * fx0 + this.division2 * fx1;
-    return resultado.toFixed(4);
+    return resultado.toFixed(6);
   };
   this._orden2 = function (x, x0, x1, x2, fx0, fx1, fx2) {
-    this.first = ((x - x1) / (x0 - x1)) * ((x - x2) / x0 - x2);
-    this.second = ((x - x0) / (x1 - x0)) * ((x - x2) / (x1 - x2));
-    this.third = ((x - x0) / (x2 - x0)) * ((x - x1) / (x - x1) / (x2 - x1));
+    this.first = ((x - x1) * (x - x2)) / ((x0 - x1) * (x0 - x2));
+    this.second = ((x - x0) * (x - x2)) / ((x1 - x0) * (x1 - x2));
+    this.third = ((x - x0) * (x - x1)) / ((x2 - x0) * (x2 - x1));
     var resultado = this.first * fx0 + this.second * fx1 + this.third * fx2;
-    return resultado.toFixed(4);
+    return resultado.toFixed(6);
   };
   this._cuadratica = function (x, x0, x1, b0, b1, b2) {
     this.resultado = b0 + b1 * (x - x0) + b2 * (x - x0) * (x - x1);
-    return this.resultado.toFixed(4)
+    console.log(this.resultado);
+    return this.resultado.toFixed(6);
+  };
+  this._error = function () {
+    let resultado = document.getElementById("resultado").value;
+    let verdadero = document.getElementById("verdadero").value;
+    let error = verdadero - resultado;
+    let errorPorcentual = (error / verdadero) * 100;
+    document.getElementById("porcentual").value = errorPorcentual.toFixed(6);
   };
 })();
-
 var verificar = new (function () {
   this._linealAndOrden1 = function () {
     this.l = 0;
@@ -348,10 +358,11 @@ var verificar = new (function () {
     var x = document.getElementById("x").value;
     var x0 = document.getElementById("x0").value;
     var x1 = document.getElementById("x1").value;
-    var b0 = document.getElementById("b0").value;
-    var b1 = document.getElementById("b1").value;
-    var b2 = document.getElementById("b2").value;
-    this.verify2 = [x, x0, x1, b0, b1, b2];
+    var fx0 = document.getElementById("fx0").value;
+    var fx1 = document.getElementById("fx1").value;
+    var fx2 = document.getElementById("fx2").value;
+    // edite esto
+    this.verify2 = [x, x0, x1, fx0, fx1, fx2];
     this.verify2.forEach((element) => {
       if (element == "") {
         this.cuadratica++;
@@ -364,7 +375,7 @@ var verificar = new (function () {
 // Datos que necesito ("x", "x0", "x1", "x2", "fx0","fx1","fx2","b0", "b1", "b2")
 var app = new (function () {
   this.generarb0 = function () {
-    var a = document.getElementById("fx0").value;
+    var a = Number(document.getElementById("fx0").value);
     this.array = [a];
     this.array.forEach((element) => {
       if (element != "") {
@@ -415,5 +426,6 @@ var app = new (function () {
   };
 })();
 
-//     var a = document.getElementById("fx0").value;
-//     document.getElementById("b0").value = a;
+// id="verdadero"
+// id="calcError"
+// Calcular error
