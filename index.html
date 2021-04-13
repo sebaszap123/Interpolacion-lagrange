@@ -15,25 +15,25 @@
     <div id="titulo" class="title">
       <h1>Interpolación</h1>
     </div>
-    <div class="btn-group">
-      <button type="button" class="btn btn-default" onclick="generar.lineal()">
+    <div class="btn-group" role="alert">
+      <a href="#main"><button type="button" class="btn btn-default" onclick="generar.lineal()">
         Interpolación lineal
-      </button>
-      <button type="button" class="btn btn-default" onclick="generar.orden1()">
+      </button></a>
+      <a href="#main"><button type="button" class="btn btn-default" onclick="generar.orden1()">
         Interpolación lagrage 1er orden
-      </button>
-      <button type="button" class="btn btn-default" onclick="generar.orden2()">
+      </button></a>
+      <a href="#main"><button type="button" class="btn btn-default" onclick="generar.orden2()">
         Interpolación lagrange 2do orden
-      </button>
-      <button
+      </button></a>
+      <a href="#main"><button
         type="button"
         class="btn btn-default"
         onclick="generar.cuadratica()"
       >
         Interpolación Cuadrática
-      </button>
+      </button></a>
     </div>
-    <div>
+    <div class="extras">
       <button class="result" id="obtener">Calcular</button><br />
       <input
         type="number"
@@ -44,6 +44,7 @@
       <button type="button" class="btn-verdadero" onclick="calculo._error()">
         Error porcentual
       </button>
+
       <input
         class="btn-verdadero"
         id="porcentual"
@@ -58,15 +59,18 @@
         disabled
       /><br /><br />
     </div>
-
+<section id="main">
     <center>
       <div id="main-container">
         <table id="contenedor"></table>
         <!-- ETIQUETA DONDE SE IMPRIMIRA NUESTRA TABLA -->
       </div>
     </center>
+</section>
+
     <div class="footer">
       <p>© Copyright Sebaszap123</p>
     </div>
+
   </body>
 </html>
