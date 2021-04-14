@@ -5,24 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Calculadora de interpolaciones</title>
-    <link rel="stylesheet" href="style.css" /> 
+    <link rel="stylesheet" href="style.css"/>
+    <!-- ↑ stylesheet es el estilo css para las animaciones y estilos para la pagina html mediante clases --> 
     <link rel="icon" href="/img/sao.ico" sizes="16x16"></link>
+    <!-- ↑ primer opción de  favicon para la pagina html -->
     <link rel="icon" href="/img/sao_2.ico" sizes="64x64"></link>
+    <!-- ↑ segunda opcion de favicon para pagina html -->
     <link rel="icon" href="https://sebaszap123.github.io/Interpolacion-lagrange/img/sao.ico?v=2" />
+    <!-- ↑ tercera opcion de favicon para pagina html -->
     <script src="main.js"></script>
+    <!-- ↑ este es la etiqueta que llama a javascript desde el main.js -->
   </head>
   <body>
     <div id="titulo" class="title">
+      <!-- ↑ contenedor del titulo -->
       <h1>Interpolación</h1>
+      <!-- ↑ titulo con tamaño h1 -->
     </div>
     <div class="btn-group" role="alert">
-      <a href="#main"><button type="button" class="btn btn-default" onclick="generar.lineal()">
+      <!-- ↑ contenedor para grupo de botones -->
+      <a href="#main"> <!-- ↑ referencia que lleva al div que genera la tabla de calculo --> <button type="button" class="btn btn-default" onclick="generar.lineal()"> <!-- ↑ botón que llama a la función para calcular interpolación lineal -->
         Interpolación lineal
       </button></a>
       <a href="#main"><button type="button" class="btn btn-default" onclick="generar.orden1()">
+        <!-- ↑ lo mismo aplicado para el botón generador para el calculo de lagrange orden 1  -->
         Interpolación lagrage 1er orden
       </button></a>
       <a href="#main"><button type="button" class="btn btn-default" onclick="generar.orden2()">
+        <!-- ↑ lo mismo aplicado para el botón generador para el calculo de lagrange orden 2  -->
         Interpolación lagrange 2do orden
       </button></a>
       <a href="#main"><button
@@ -30,11 +40,14 @@
         class="btn btn-default"
         onclick="generar.cuadratica()"
       >
+      <!-- ↑ lo mismo aplicado para el botón generador para el calculo interpolación cuadrática  -->
         Interpolación Cuadrática
       </button></a>
     </div>
     <div class="extras">
+      <!-- ↑ clase con los botones "calcular", "Error porcentual", y el input para el valor verdadero de fx, ademas del input donde se arroja el resultado tanto de fx como el del valor de error    -->
       <button class="result" id="obtener">Calcular</button><br />
+      <!-- ↑ "calcular" el cual llama una función al hacer click y recolecta los respectivos datos según el calculo seleccionado a realizar -->
       <input
         type="number"
         id="verdadero"
@@ -44,7 +57,6 @@
       <button type="button" class="btn-verdadero" onclick="calculo._error()">
         Error porcentual
       </button>
-
       <input
         class="btn-verdadero"
         id="porcentual"
@@ -60,15 +72,18 @@
       /><br /><br />
     </div>
 <section id="main">
+  <!-- Define la sección para referirse a esta -->
     <center>
       <div id="main-container">
+        <!-- contenedor del main-->
         <table id="contenedor"></table>
-        <!-- ETIQUETA DONDE SE IMPRIMIRA NUESTRA TABLA -->
+        <!-- ETIQUETA DONDE SE IMPRIME LA TABLA -->
       </div>
     </center>
 </section>
 
     <div class="footer">
+       <!-- clase del footer -->
       <p>© Copyright Sebaszap123</p>
     </div>
 

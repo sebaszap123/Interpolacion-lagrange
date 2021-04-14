@@ -1,3 +1,4 @@
+// esta función genera otras 4 las cuales se dedican a calcular las interpolaciones respectivas
 var generar = new (function () {
   this.lineal = function () {
     document.getElementById("resultado").value = "resultado";
@@ -9,18 +10,19 @@ var generar = new (function () {
       "F(x<sub>0<sub>)",
       "F(x<sub>1<sub>)",
     ];
-    var data = "<div id='dataLineal'>"; // Modificar, tomar en cuenta
-    data += "<br>";
-    data += "<h3>Calculadora interpolación lineal<h3>";
-    data += "</div>";
-    data += "<thead><tr><th>Datos</th><th>Valores</th><th>Mensaje</th>";
+    var data = "<div id='dataLineal'>"; // esto refiere al div que se creara para hacerle referencia
+    data += "<br>"; // salto de linea
+    data += "<h3>Calculadora interpolación lineal<h3>"; // titulo de la tabla
+    data += "</div>"; /**/
+    data += "<thead><tr><th>Datos</th><th>Valores</th><th>Mensaje</th>"; // datos de la tabla principales
     for (i = 0; i < this.datos.length; i++) {
-      //INICIAMOS NUESTRO CICLO PARA IMPRIMIR NUESTRA TABLA CON LOS DATOS NECESARIOS
+      // Se inicia un ciclo para imprimir los datos necesarios en este caso para la interpolación lineal
       data += "<tr>";
       if (this.datos[i].Resultado == "") {
-        //DETERMINAMOS SI EL RESULTADO ESTA VACIO
+        // Verificamos que el resultado este vació;
         alert("Algo salio mal");
       } else {
+        // datos que se imprimen en la tabla
         data +=
           "<td>" +
           this.datos[i] +
@@ -32,6 +34,7 @@ var generar = new (function () {
     document.getElementById("contenedor").innerHTML = data;
     document.getElementById("contenedor").style.display = "block";
   };
+  // se realizan las mismas funciones anteriores
   this.orden1 = function () {
     document.getElementById("resultado").value = "resultado";
     this.metadata = ["x", "x0", "x1", "fx0", "fx1"];
@@ -64,6 +67,7 @@ var generar = new (function () {
     document.getElementById("contenedor").innerHTML = data;
     document.getElementById("contenedor").style.display = "block";
   };
+  // se realizan las mismas funciones anteriores
   this.orden2 = function () {
     document.getElementById("resultado").value = "resultado";
     this.metadata = ["x", "x0", "x1", "x2", "fx0", "fx1", "fx2"];
@@ -98,6 +102,7 @@ var generar = new (function () {
     document.getElementById("contenedor").innerHTML = data;
     document.getElementById("contenedor").style.display = "block";
   };
+  // se realizan las mismas funciones anteriores
   this.cuadratica = function () {
     document.getElementById("resultado").value = "resultado";
 
@@ -174,12 +179,8 @@ var generar = new (function () {
   };
 })();
 
-var orden2 = new (function () {})();
-
-var cuadratica = new (function () {})();
-
 //Obtener valores del html con dom + funciones de cada interpolación (mismo boton para todas)
-window.onload = function () {
+window.onload = function () { // necesario para que despues de cargar la pagina una ves generada la tabla podamos extraer los valores
   document.getElementById("obtener").onclick = function () {
     // Calculo para interpolación lineal del respectivo div
     // Primero verificar si existe dataLineal
@@ -289,17 +290,20 @@ window.onload = function () {
 
 // Elaborar la función para calcular metodos de interpolación
 var calculo = new (function () {
+  // calculo para la interpolación lineal
   this._lineal = function (x, x0, x1, fx0, fx1) {
     this.division = (fx1 - fx0) / (x1 - x0);
     let resultado = fx0 + this.division * (x - x0);
     return resultado.toFixed(6);
   };
+  // calculo para la interpolación de orden 1 de lagrange
   this._orden1 = function (x, x0, x1, fx0, fx1) {
     this.division1 = (x - x1) / (x0 - x1);
     this.division2 = (x - x0) / (x1 - x0);
     let resultado = this.division1 * fx0 + this.division2 * fx1;
     return resultado.toFixed(6);
   };
+  // calculo para la interpolación de orden 2 de lagrange
   this._orden2 = function (x, x0, x1, x2, fx0, fx1, fx2) {
     this.first = ((x - x1) * (x - x2)) / ((x0 - x1) * (x0 - x2));
     this.second = ((x - x0) * (x - x2)) / ((x1 - x0) * (x1 - x2));
@@ -307,11 +311,13 @@ var calculo = new (function () {
     var resultado = this.first * fx0 + this.second * fx1 + this.third * fx2;
     return resultado.toFixed(6);
   };
+  // calculo para la interpolación cuadrática
   this._cuadratica = function (x, x0, x1, b0, b1, b2) {
     this.resultado = b0 + b1 * (x - x0) + b2 * (x - x0) * (x - x1);
     console.log(this.resultado);
     return this.resultado.toFixed(6);
   };
+  // calculo de error para cuando se tiene el valor verdadero de fx y el valor obtenido al calcularlo con algun metodo de interpolación
   this._error = function () {
     let resultado = document.getElementById("resultado").value;
     let verdadero = document.getElementById("verdadero").value;
@@ -320,6 +326,7 @@ var calculo = new (function () {
     document.getElementById("porcentual").value = errorPorcentual.toFixed(6);
   };
 })();
+// esta función se encarga de verificar que no allá valores vacios en la tabla generada dependiendo de el metodo de interpolación
 var verificar = new (function () {
   this._linealAndOrden1 = function () {
     this.l = 0;
@@ -372,7 +379,9 @@ var verificar = new (function () {
   };
 })();
 
-// Datos que necesito ("x", "x0", "x1", "x2", "fx0","fx1","fx2","b0", "b1", "b2")
+// esta app o función llamada app genera los valores para b0,b1 y b2 de la interpolación cuadratica y los muestra en la tabla
+/* se pensaba en un principio usar para que el usuario manualmente generara cada uno de estos valores, 
+pero rechace la idea debido a que especificamente decia en el documento que solo se genera el resultado con los valores de xn y f(xn)*/
 var app = new (function () {
   this.generarb0 = function () {
     var a = Number(document.getElementById("fx0").value);
@@ -426,6 +435,3 @@ var app = new (function () {
   };
 })();
 
-// id="verdadero"
-// id="calcError"
-// Calcular error
