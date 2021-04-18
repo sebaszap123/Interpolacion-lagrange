@@ -1,6 +1,7 @@
 // esta función genera otras 4 las cuales se dedican a calcular las interpolaciones respectivas
 var generar = new (function () {
   this.lineal = function () {
+    document.getElementById("porcentual").value = "";
     document.getElementById("resultado").value = "resultado";
     this.metadata = ["x", "x0", "x1", "fx0", "fx1"];
     this.datos = [
@@ -36,6 +37,7 @@ var generar = new (function () {
   };
   // se realizan las mismas funciones anteriores
   this.orden1 = function () {
+    document.getElementById("porcentual").value = ""
     document.getElementById("resultado").value = "resultado";
     this.metadata = ["x", "x0", "x1", "fx0", "fx1"];
     this.datos = [
@@ -69,6 +71,7 @@ var generar = new (function () {
   };
   // se realizan las mismas funciones anteriores
   this.orden2 = function () {
+    document.getElementById("porcentual").value = "";
     document.getElementById("resultado").value = "resultado";
     this.metadata = ["x", "x0", "x1", "x2", "fx0", "fx1", "fx2"];
     this.datos = [
@@ -104,6 +107,7 @@ var generar = new (function () {
   };
   // se realizan las mismas funciones anteriores
   this.cuadratica = function () {
+    document.getElementById("porcentual").value = "";
     document.getElementById("resultado").value = "resultado";
 
     this.metadata = [
@@ -294,6 +298,7 @@ var calculo = new (function () {
   this._lineal = function (x, x0, x1, fx0, fx1) {
     this.division = (fx1 - fx0) / (x1 - x0);
     let resultado = fx0 + this.division * (x - x0);
+    // toFixed es para regresar solo cierta cantidad de numeros decimales en este caso solo 6
     return resultado.toFixed(6);
   };
   // calculo para la interpolación de orden 1 de lagrange
