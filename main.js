@@ -261,7 +261,7 @@ window.onload = function () { // necesario para que despues de cargar la pagina 
       // Verificamos si hay inputs vacios
       let i = verificar._cuadratica();
       // if de acuerdo a la funcion verificar para evitar hacer el calculo con datos faltantes
-      if (i < 1) {
+      if (i <= 0) {
         // definir como numeros
         var x = Number(document.getElementById("x").value);
         var x0 = Number(document.getElementById("x0").value);
@@ -365,11 +365,12 @@ var verificar = new (function () {
     var x = document.getElementById("x").value;
     var x0 = document.getElementById("x0").value;
     var x1 = document.getElementById("x1").value;
+    var x2 = document.getElementById("x2").value;
     var fx0 = document.getElementById("fx0").value;
     var fx1 = document.getElementById("fx1").value;
     var fx2 = document.getElementById("fx2").value;
     // edite esto
-    this.verify2 = [x, x0, x1, fx0, fx1, fx2];
+    this.verify2 = [x, x0, x1, x2, fx0, fx1, fx2];
     this.verify2.forEach((element) => {
       if (element == "") {
         this.cuadratica++;
